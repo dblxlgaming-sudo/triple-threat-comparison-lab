@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Triple Threat · Comparison Lab</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Triple Threat home"><span class="tt">TT</span><strong>TRIPLE THREAT</strong></a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#">⌂ <span>Home</span></a>
+        <a href="#">⌁ <span>Line Lab</span></a>
+        <a class="active" href="#">◇ <span>Research</span></a>
+        <a href="#">◉ <span>Community</span></a>
+      </nav>
+      <div id="research-nav"></div>
+      <nav class="account-nav">
+        <a href="#">♙ <span>Account</span></a><a href="#">◷ <span>Updates</span></a><a href="#">⌕ <span>Help / Feedback</span></a>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="page-head">
+        <div class="crumbs" id="crumbs">Research › Tennis Research › Comparison Lab</div>
+        <h1>Comparison <em>Lab</em></h1>
+        <p id="page-description"></p>
+      </header>
+      <section id="lab" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <template id="pill-template"><button class="pill" type="button"></button></template>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
