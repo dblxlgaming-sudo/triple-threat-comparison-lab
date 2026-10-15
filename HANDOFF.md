@@ -60,6 +60,10 @@ Required concepts:
 
 H2H Matchup Trends is the bottom analytical section. Do not restore a generic H2H card or What Stands Out block there.
 
+### Published fine-zone court contract
+
+The authoritative Teams scoring-geography path is implemented in `src/wnba-zone-contract.js` and rendered by `src/app.js`. It consumes `/api/research/wnba/matchup-zones/current`, groups by `EventID + OffenseTeamID + DefenseTeamID`, and uses only `offense_shot_share`, `offense_field_goal_pct`, `opponent_field_goal_pct_allowed`, and `opponent_field_goal_pct_allowed_rank` for the five supplied zones. `CORNER_THREE` remains combined. The UI does not derive player distributions or matchup classifications. See `SITE_INTEGRATION_HANDOFF.md`.
+
 ## Matchup classification
 
 The UI supports `Favorable`, `Neutral`, and `Difficult` as display states. During production integration, determine whether an existing authoritative contract supplies these classifications. If it does not, obtain an approved rule/owner before deriving them. Do not silently infer them from fixture thresholds.

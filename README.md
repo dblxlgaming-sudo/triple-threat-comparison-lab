@@ -47,7 +47,9 @@ Open `http://localhost:8080`.
 
 ## Data boundary
 
-`src/fixtures.js` is the only demo-data source. Nothing in it should be treated as a production fact or endpoint.
+`src/fixtures.js` supplies the standalone Tennis demonstration and legacy visual fixtures. Nothing in it should be treated as a production fact or endpoint.
+
+The WNBA Teams scoring-geography court now uses the published fine-zone contract at `/api/research/wnba/matchup-zones/current`. It joins records by `EventID + OffenseTeamID + DefenseTeamID`, preserves upstream unavailable/provenance fields, and displays only the five supplied team-level zones. See `SITE_INTEGRATION_HANDOFF.md` for the production host contract.
 
 `src/adapters.js` defines the normalized inputs consumed by the UI. Production integration should replace fixture loading with adapters that map existing authoritative Triple Threat contracts into these shapes. Do **not** make UI code infer missing statistics, recalculate model outputs, or invent endpoints.
 
