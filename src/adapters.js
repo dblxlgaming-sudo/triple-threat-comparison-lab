@@ -8,7 +8,8 @@ import { tennis, wnba } from './fixtures.js';
  *
  * TennisComparisonData:
  * { players[], metricsByPlayerId, meetings[] }
- * meetings: { surface,event,date,winner,score,stats }
+ * meetings: { matchId,surface,event,date,winner,score,stats,availability,provenance }
+ * Production Tennis H2H rows must be normalized with tennis-h2h-contract.js.
  *
  * WnbaPlayerComparisonData:
  * { players[], teams[], geography[], playTypes[], defense[] }

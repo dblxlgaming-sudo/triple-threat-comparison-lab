@@ -53,3 +53,23 @@ node tests/wnba-zone-contract.test.mjs
 ```
 
 Expected behavior outside the authenticated Triple Threat origin is an explicit unavailable state. GitHub Pages cannot reuse the private Triple Threat member session; production integration must run same-origin.
+
+---
+
+# Tennis H2H Metadata - Site Integration Handoff
+
+## Confirmed defect and authoritative fields
+
+The production adapter currently reads `MatchDate`, but the published Tennis V2 player-stat contract uses `Date`. It also recognizes only an explicit `W` row. This drops valid winner metadata when an H2H match has only the losing player's authoritative row.
+
+For Daria Snigur vs Katarzyna Kawa, the authoritative contract contains:
+
+- `TT2-789D0AB74A49786E`: `Date=2026-01-12`, Australian Open, Kawa `Result=L`; therefore the authoritative result relation identifies Snigur as winner even though the reciprocal row is absent.
+- `TT2-A0F2B6AC317B1153`: `Date=2026-09-29`, Beijing, Snigur `Result=W` and Kawa `Result=L`.
+
+## Files to integrate
+
+- `src/tennis-h2h-contract.js` - pairs rows by `MatchID`, maps `Date` with legacy `MatchDate` fallback, resolves winner only from authoritative `Result`, and preserves availability/provenance.
+- `tests/tennis-h2h-contract.test.mjs` - regression coverage for both Snigur/Kawa matches and the no-score-inference rule.
+
+Replace the site's current `tennisMeetings` implementation with `normalizeTennisH2H`. Do not infer a winner from `FinalScore`; unresolved or conflicting result metadata must remain `Winner unavailable`. Do not replace a missing date with a fabricated or current date.
